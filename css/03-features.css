@@ -1,0 +1,298 @@
+/* ========================================
+   03-FEATURES.CSS - NK Insurance
+   Features/Benefits Section Styles
+   ======================================== */
+
+/* ========================================
+   Features Section
+   ======================================== */
+.features {
+    padding: var(--spacing-4xl) 0;
+    background: var(--bg-light);
+    position: relative;
+}
+
+/* Background Pattern */
+.features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 170, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 168, 132, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
+}
+
+/* Feature Card */
+.feature-card {
+    background: var(--bg-white);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-all);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card Hover Effects */
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-base);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Feature Icon */
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 168, 132, 0.1));
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: 2rem;
+    position: relative;
+    transition: var(--transition-base);
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(0, 168, 132, 0.15));
+}
+
+/* Animated Icon Background */
+.feature-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-radius: var(--radius-full);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: var(--transition-base);
+    z-index: -1;
+}
+
+.feature-card:hover .feature-icon::after {
+    opacity: 0.1;
+    transform: scale(1.2);
+}
+
+/* Feature Content */
+.feature-title {
+    font-size: var(--font-xl);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-weight: var(--font-bold);
+}
+
+.feature-description {
+    color: var(--text-body);
+    line-height: var(--line-relaxed);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Feature Link */
+.feature-link {
+    color: var(--secondary);
+    font-weight: var(--font-semibold);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.feature-link::after {
+    content: '→';
+    transition: transform var(--transition-base);
+}
+
+.feature-link:hover {
+    color: var(--accent);
+    gap: var(--spacing-md);
+}
+
+.feature-link:hover::after {
+    transform: translateX(5px);
+}
+
+/* ========================================
+   Feature Variations
+   ======================================== */
+
+/* Numbered Features */
+.feature-card.numbered {
+    counter-increment: feature-counter;
+}
+
+.feature-card.numbered .feature-icon::before {
+    content: counter(feature-counter);
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 25px;
+    height: 25px;
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
+}
+
+/* Featured Card */
+.feature-card.featured {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+}
+
+.feature-card.featured .feature-title {
+    color: white;
+}
+
+.feature-card.featured .feature-description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.feature-card.featured .feature-link {
+    color: var(--secondary);
+}
+
+.feature-card.featured .feature-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   Feature List Style
+   ======================================== */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-lg) 0;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-body);
+}
+
+.feature-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    color: white;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 1199px) {
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .features {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .feature-card {
+        padding: var(--spacing-xl);
+    }
+    
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .feature-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .feature-title {
+        font-size: var(--font-lg);
+    }
+    
+    .feature-description {
+        font-size: var(--font-sm);
+    }
+}
+
+/* ========================================
+   Loading Animation for Features
+   ======================================== */
+@keyframes featureLoad {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.features-grid .feature-card {
+    animation: featureLoad 0.6s ease-out backwards;
+}
+
+.features-grid .feature-card:nth-child(1) { animation-delay: 0.1s; }
+.features-grid .feature-card:nth-child(2) { animation-delay: 0.2s; }
+.features-grid .feature-card:nth-child(3) { animation-delay: 0.3s; }
+.features-grid .feature-card:nth-child(4) { animation-delay: 0.4s; }
+.features-grid .feature-card:nth-child(5) { animation-delay: 0.5s; }
+.features-grid .feature-card:nth-child(6) { animation-delay: 0.6s; }

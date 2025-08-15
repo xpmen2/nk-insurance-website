@@ -1,0 +1,475 @@
+/* ========================================
+   06-QUOTE-FORM.CSS - NK Insurance
+   Quote Form Section Styles
+   ======================================== */
+
+/* ========================================
+   Quote Section
+   ======================================== */
+.quote-section {
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(135deg, #0B2545 0%, #134E6F 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Pattern */
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -25%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0, 212, 170, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+/* Quote Header */
+.quote-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    color: white;
+}
+
+.quote-header h2 {
+    color: white;
+    margin-bottom: var(--spacing-md);
+}
+
+.quote-header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-lg);
+}
+
+/* Quote Container */
+.quote-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-3xl);
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+   Quote Form Wrapper
+   ======================================== */
+.quote-form-wrapper {
+    background: white;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.quote-form-wrapper h2 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.quote-form-wrapper > p {
+    color: var(--text-body);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Form Progress */
+.form-progress {
+    margin-bottom: var(--spacing-xl);
+}
+
+.progress-bar {
+    height: 6px;
+    background: var(--bg-light);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    border-radius: var(--radius-full);
+    transition: width var(--transition-base);
+}
+
+.progress-text {
+    font-size: var(--font-sm);
+    color: var(--text-muted);
+    text-align: center;
+    display: block;
+}
+
+/* ========================================
+   Form Styles
+   ======================================== */
+.quote-form {
+    position: relative;
+}
+
+/* Form Steps */
+.form-step {
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-step h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-xl);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid #e0e0e0;
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    transition: var(--transition-base);
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+}
+
+/* Form Row */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+/* Radio and Checkbox Groups */
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.radio-label,
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+}
+
+.radio-label:hover,
+.checkbox-label:hover {
+    background: var(--bg-light);
+    border-color: var(--secondary);
+}
+
+.radio-label input,
+.checkbox-label input {
+    width: auto;
+    margin: 0;
+}
+
+.radio-label input[type="radio"],
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--secondary);
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.form-navigation .btn {
+    min-width: 120px;
+}
+
+.btn-prev {
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.btn-prev:hover {
+    background: var(--bg-gray);
+}
+
+.btn-submit {
+    width: 100%;
+}
+
+/* Summary Content */
+.summary-content {
+    background: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.summary-content .summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-content .summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-content .summary-label {
+    font-weight: var(--font-medium);
+    color: var(--text-muted);
+}
+
+.summary-content .summary-value {
+    font-weight: var(--font-semibold);
+    color: var(--primary);
+}
+
+/* ========================================
+   Quote Sidebar
+   ======================================== */
+.quote-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* Eligibility Card */
+.eligibility-card {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.eligibility-card h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.eligibility-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.eligibility-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-body);
+}
+
+.eligibility-list .icon {
+    color: var(--secondary);
+    font-weight: var(--font-bold);
+    font-size: var(--font-lg);
+    line-height: 1;
+}
+
+/* Trust Indicators */
+.trust-indicators {
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+}
+
+.indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    color: white;
+}
+
+.indicator:last-child {
+    margin-bottom: 0;
+}
+
+.indicator-icon {
+    font-size: var(--font-xl);
+}
+
+.indicator-text {
+    font-size: var(--font-sm);
+}
+
+/* Agent Card */
+.agent-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.agent-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.agent-info strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.agent-info p {
+    margin: 0;
+    color: var(--text-body);
+    font-size: var(--font-sm);
+}
+
+.agent-info .small {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+}
+
+/* ========================================
+   Form Tabs (Legacy)
+   ======================================== */
+.form-tabs {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+.form-tab {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--bg-light);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: var(--font-medium);
+    transition: var(--transition-base);
+    color: var(--text-dark);
+}
+
+.form-tab:hover {
+    background: var(--bg-gray);
+}
+
+.form-tab.active {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    color: white;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 991px) {
+    .quote-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+    
+    .quote-sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 767px) {
+    .quote-section {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    .quote-form-wrapper {
+        padding: var(--spacing-xl);
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-navigation {
+        flex-direction: column;
+    }
+    
+    .form-navigation .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .quote-form-wrapper {
+        padding: var(--spacing-lg);
+    }
+    
+    .form-tabs {
+        gap: var(--spacing-xs);
+    }
+    
+    .form-tab {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-sm);
+    }
+    
+    .eligibility-card,
+    .agent-card {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* ========================================
+   Form Validation Styles
+   ======================================== */
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: var(--danger);
+}
+
+.form-group.success input,
+.form-group.success select,
+.form-group.success textarea {
+    border-color: var(--success);
+}
+
+.form-error {
+    color: var(--danger);
+    font-size: var(--font-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.form-success {
+    color: var(--success);
+    font-size: var(--font-sm);
+    margin-top: var(--spacing-xs);
+}

@@ -1,0 +1,280 @@
+/* ========================================
+   01-NAVIGATION.CSS - NK Insurance
+   Top Banner & Navigation Styles
+   ======================================== */
+
+/* ========================================
+   Top Banner
+   ======================================== */
+.top-banner {
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    color: white;
+    padding: 0.625rem 0;
+    font-size: var(--font-sm);
+    font-weight: var(--font-medium);
+}
+
+.top-banner .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+.banner-content {
+    display: flex;
+    gap: var(--spacing-xl);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.banner-content span {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* ========================================
+   Navigation Bar
+   ======================================== */
+.navbar {
+    background: var(--bg-white);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    transition: var(--transition-all);
+}
+
+.navbar.scrolled {
+    box-shadow: var(--shadow-lg);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    gap: var(--spacing-xl);
+}
+
+/* Logo */
+.logo {
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-size: 1.75rem;
+    font-weight: var(--font-extrabold);
+    color: var(--primary);
+    letter-spacing: -0.02em;
+}
+
+.logo-accent {
+    color: var(--secondary);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-xl);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-link {
+    color: var(--text-dark);
+    font-weight: var(--font-medium);
+    padding: var(--spacing-sm) 0;
+    position: relative;
+    transition: var(--transition-base);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: width var(--transition-base);
+}
+
+.nav-link:hover {
+    color: var(--secondary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--secondary);
+}
+
+/* Navigation CTA */
+.nav-cta {
+    flex-shrink: 0;
+}
+
+.nav-cta .btn {
+    padding: 0.625rem 1.5rem;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    z-index: var(--z-fixed);
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--primary);
+    margin: 3px 0;
+    transition: var(--transition-all);
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* ========================================
+   Mobile Navigation
+   ======================================== */
+@media (max-width: 991px) {
+    .top-banner .container {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .banner-content {
+        justify-content: center;
+        gap: var(--spacing-md);
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        text-align: center;
+        transition: var(--transition-base);
+        box-shadow: var(--shadow-xl);
+        padding: var(--spacing-xl) 0;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+        gap: var(--spacing-md);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        padding: var(--spacing-md);
+        display: block;
+        width: 100%;
+    }
+    
+    .nav-cta {
+        display: none;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+}
+
+@media (max-width: 575px) {
+    .banner-content {
+        font-size: 0.75rem;
+        gap: var(--spacing-sm);
+    }
+    
+    .banner-content span {
+        gap: 0.25rem;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+    }
+}
+
+/* ========================================
+   Sticky Navigation Animations
+   ======================================== */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.navbar.sticky-animated {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* ========================================
+   Navigation Dropdown (Future Enhancement)
+   ======================================== */
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: var(--shadow-xl);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition-all);
+}
+
+.nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-dropdown-item {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    color: var(--text-dark);
+    display: block;
+    transition: var(--transition-base);
+}
+
+.nav-dropdown-item:hover {
+    background: var(--bg-light);
+    color: var(--secondary);
+}

@@ -1,0 +1,484 @@
+/* ========================================
+   09-FOOTER.CSS - NK Insurance
+   Footer & Contact Section Styles
+   ======================================== */
+
+/* ========================================
+   Contact Section
+   ======================================== */
+.contact {
+    padding: var(--spacing-4xl) 0;
+    background: var(--bg-light);
+    position: relative;
+}
+
+/* Contact Container */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    margin-top: var(--spacing-3xl);
+}
+
+/* Contact Info */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.contact-info h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Office Grid */
+.office-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.office-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
+}
+
+.office-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.office-card h4 {
+    color: var(--secondary);
+    font-size: var(--font-base);
+    margin-bottom: var(--spacing-sm);
+}
+
+.office-card p {
+    font-size: var(--font-sm);
+    color: var(--text-body);
+    margin: 0;
+    line-height: var(--line-relaxed);
+}
+
+/* Contact Methods */
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.method {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.method .icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-xl);
+    flex-shrink: 0;
+}
+
+.method strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.method p {
+    margin: 0;
+    color: var(--text-body);
+    font-size: var(--font-sm);
+}
+
+/* Contact Form Wrapper */
+.contact-form-wrapper {
+    background: white;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-form-wrapper h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid #e0e0e0;
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    font-family: inherit;
+    transition: var(--transition-base);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+    background: var(--primary);
+    color: white;
+    padding: var(--spacing-3xl) 0 var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer Background Pattern */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -25%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+/* Footer Content */
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+    position: relative;
+    z-index: 1;
+}
+
+/* Footer About Section */
+.footer-section.footer-about {
+    padding-right: var(--spacing-xl);
+}
+
+.footer-section h3 {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+}
+
+.footer-section h3 span {
+    color: var(--secondary);
+}
+
+.footer-section p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: var(--line-relaxed);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: var(--transition-base);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-links a:hover {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    transform: translateY(-3px);
+}
+
+/* Footer Links */
+.footer-section h4 {
+    font-size: var(--font-lg);
+    margin-bottom: var(--spacing-lg);
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-section a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: var(--transition-base);
+    position: relative;
+    padding-left: 0;
+}
+
+.footer-section a::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: var(--transition-base);
+}
+
+.footer-section a:hover {
+    color: var(--secondary);
+    padding-left: var(--spacing-sm);
+}
+
+.footer-section a:hover::before {
+    width: 15px;
+    left: -5px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--font-sm);
+    margin: var(--spacing-xs) 0;
+}
+
+/* Newsletter Signup (Optional) */
+.newsletter-signup {
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.newsletter-signup h5 {
+    font-size: var(--font-base);
+    margin-bottom: var(--spacing-sm);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    color: white;
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.newsletter-form button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-weight: var(--font-medium);
+}
+
+.newsletter-form button:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Back to Top Button (Optional) */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--secondary);
+    color: white;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-base);
+    z-index: var(--z-fixed);
+    box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 991px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+    
+    .footer-section.footer-about {
+        grid-column: 1 / -1;
+        padding-right: 0;
+    }
+    
+    .office-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    .contact-form .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer {
+        padding: var(--spacing-2xl) 0 var(--spacing-lg);
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-section a::before {
+        display: none;
+    }
+    
+    .footer-section a:hover {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 575px) {
+    .contact-form-wrapper {
+        padding: var(--spacing-lg);
+    }
+    
+    .method {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ========================================
+   Animation Classes
+   ======================================== */
+@keyframes footerSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer-section {
+    animation: footerSlideUp 0.6s ease-out backwards;
+}
+
+.footer-section:nth-child(1) { animation-delay: 0.1s; }
+.footer-section:nth-child(2) { animation-delay: 0.2s; }
+.footer-section:nth-child(3) { animation-delay: 0.3s; }
+.footer-section:nth-child(4) { animation-delay: 0.4s; }
