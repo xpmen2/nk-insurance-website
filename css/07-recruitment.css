@@ -111,9 +111,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
     color: white;
     position: relative;
+}
+
+/* SVG Icon Styling for Benefits */
+.benefit-icon svg {
+    width: 36px;
+    height: 36px;
+    stroke: white;
+    fill: none;
+    stroke-width: 2;
+    transition: var(--transition-all);
 }
 
 .benefit-icon::before {

@@ -79,9 +79,18 @@
     align-items: center;
     justify-content: center;
     margin-bottom: var(--spacing-lg);
-    font-size: 2rem;
     position: relative;
     transition: var(--transition-base);
+}
+
+/* SVG Icon Styling for Features */
+.feature-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--secondary);
+    fill: none;
+    stroke-width: 2;
+    transition: var(--transition-all);
 }
 
 .feature-card:hover .feature-icon {
