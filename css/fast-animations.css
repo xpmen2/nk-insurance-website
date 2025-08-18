@@ -1,0 +1,236 @@
+/* ========================================
+   FAST ANIMATIONS OVERRIDE - NK Insurance
+   Animaciones más rápidas para mejor UX
+   ======================================== */
+
+/* 
+   Este archivo acelera todas las animaciones del sitio.
+   Ya está aplicado en animations.js, pero aquí están
+   los overrides CSS para mayor control.
+*/
+
+/* ========================================
+   Variables de Velocidad Global
+   ======================================== */
+:root {
+    --animation-fast: 0.2s;
+    --animation-normal: 0.3s;
+    --animation-slow: 0.4s;
+    --animation-delay-short: 0.05s;
+    --animation-delay-normal: 0.1s;
+    --animation-delay-long: 0.15s;
+}
+
+/* ========================================
+   Override de Animaciones al Scroll
+   ======================================== */
+
+/* Todas las animaciones de entrada */
+.animate-in,
+.fadeIn,
+.fadeInUp,
+.fadeInDown,
+.fadeInLeft,
+.fadeInRight,
+.zoomIn,
+.slideIn {
+    animation-duration: var(--animation-normal) !important;
+    transition-duration: var(--animation-normal) !important;
+}
+
+/* Cards y elementos que aparecen en grupo */
+.feature-card,
+.service-card,
+.benefit-card,
+.testimonial-card,
+.office-card {
+    transition: all var(--animation-fast) ease-out !important;
+}
+
+/* Stagger más rápido para grupos */
+.feature-card:nth-child(1),
+.service-card:nth-child(1),
+.benefit-card:nth-child(1) {
+    transition-delay: 0s !important;
+}
+
+.feature-card:nth-child(2),
+.service-card:nth-child(2),
+.benefit-card:nth-child(2) {
+    transition-delay: var(--animation-delay-short) !important;
+}
+
+.feature-card:nth-child(3),
+.service-card:nth-child(3),
+.benefit-card:nth-child(3) {
+    transition-delay: calc(var(--animation-delay-short) * 2) !important;
+}
+
+.feature-card:nth-child(4),
+.service-card:nth-child(4),
+.benefit-card:nth-child(4) {
+    transition-delay: calc(var(--animation-delay-short) * 3) !important;
+}
+
+/* ========================================
+   Animaciones de Hover Más Rápidas
+   ======================================== */
+.btn,
+.nav-link,
+.social-link,
+.card,
+a {
+    transition: all var(--animation-fast) ease !important;
+}
+
+.btn:hover,
+.nav-link:hover,
+.card:hover {
+    transition: all var(--animation-fast) ease !important;
+}
+
+/* ========================================
+   Animaciones de Hero
+   ======================================== */
+.hero-title,
+.hero-subtitle,
+.hero-cta {
+    animation-duration: var(--animation-normal) !important;
+}
+
+.hero-badge {
+    animation: pulse 2s ease-in-out infinite !important; /* Más rápido el pulse */
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+/* ========================================
+   Números Animados
+   ======================================== */
+[data-animate-number] {
+    transition: all var(--animation-normal) ease !important;
+}
+
+/* ========================================
+   Loading y Skeleton
+   ======================================== */
+.skeleton-loading {
+    animation: skeleton-shimmer 1s infinite !important; /* Más rápido */
+}
+
+.page-progress {
+    transition: width var(--animation-fast) ease !important;
+}
+
+/* ========================================
+   Parallax Más Suave
+   ======================================== */
+[data-parallax] {
+    transition: transform 0.1s linear !important; /* Más responsive */
+}
+
+/* ========================================
+   Formularios
+   ======================================== */
+.form-control,
+.form-select,
+input,
+textarea,
+select {
+    transition: all var(--animation-fast) ease !important;
+}
+
+.form-control:focus,
+input:focus,
+textarea:focus {
+    transition: all var(--animation-fast) ease !important;
+}
+
+/* ========================================
+   Modales y Overlays
+   ======================================== */
+.modal,
+.overlay,
+.dropdown-menu {
+    transition: all var(--animation-fast) ease !important;
+}
+
+.modal.show,
+.overlay.show,
+.dropdown-menu.show {
+    animation-duration: var(--animation-fast) !important;
+}
+
+/* ========================================
+   Tabs y Acordeones
+   ======================================== */
+.tab-pane,
+.accordion-collapse {
+    transition: all var(--animation-normal) ease !important;
+}
+
+/* ========================================
+   Utilidades para Control Manual
+   ======================================== */
+
+/* Clases para velocidad específica */
+.animation-instant {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+}
+
+.animation-fast {
+    animation-duration: var(--animation-fast) !important;
+    transition-duration: var(--animation-fast) !important;
+}
+
+.animation-normal {
+    animation-duration: var(--animation-normal) !important;
+    transition-duration: var(--animation-normal) !important;
+}
+
+.animation-slow {
+    animation-duration: var(--animation-slow) !important;
+    transition-duration: var(--animation-slow) !important;
+}
+
+/* Desactivar animaciones (para accesibilidad) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ========================================
+   Optimización Final
+   ======================================== */
+
+/* Forzar aceleración por hardware */
+.animate-in,
+.card,
+.btn,
+.hero-image,
+[data-parallax] {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Limpiar will-change después de animar */
+.animated {
+    will-change: auto;
+}

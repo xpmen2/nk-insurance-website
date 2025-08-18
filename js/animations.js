@@ -48,8 +48,8 @@ function initScrollAnimations() {
     
     // Observer options
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05, // Más sensible, se activa antes
+        rootMargin: '0px 0px -20px 0px' // Menos margen inferior
     };
     
     // Create observer
@@ -69,14 +69,16 @@ function initScrollAnimations() {
     animatedElements.forEach((element, index) => {
         // Add initial state
         element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        element.style.transform = 'translateY(15px)'; // Menos desplazamiento
+        element.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'; // Más rápido: 0.3s
         
-        // Add staggered delay for card groups
+        // Add staggered delay for card groups (más rápido)
         if (element.classList.contains('feature-card') || 
             element.classList.contains('service-card') || 
             element.classList.contains('benefit-card')) {
-            element.style.transitionDelay = `${index * 0.1}s`;
+            // Máximo 3 elementos por fila, delay más corto
+            const columnIndex = index % 3;
+            element.style.transitionDelay = `${columnIndex * 0.05}s`; // Solo 0.05s entre elementos
         }
         
         observer.observe(element);
@@ -144,6 +146,7 @@ function initHoverAnimations() {
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function(e) {
+            this.style.transition = 'transform 0.2s ease'; // Más rápido
             this.style.transform = 'translateY(-5px) scale(1.02)';
         });
         
@@ -197,7 +200,7 @@ function initHoverAnimations() {
             
             setTimeout(() => {
                 ripple.remove();
-            }, 600);
+            }, 400); // Más rápido
         });
     });
     
@@ -224,6 +227,10 @@ function initHoverAnimations() {
                 opacity: 0;
             }
         }
+        
+        .animate-in {
+            animation-duration: 0.3s !important; /* Override para más velocidad */
+        }
     `;
     document.head.appendChild(rippleStyle);
 }
@@ -246,12 +253,12 @@ function initTextAnimations() {
             if (index < text.length) {
                 heroTitle.textContent += text.charAt(index);
                 index++;
-                setTimeout(typeWriter, 50);
+                setTimeout(typeWriter, 30); // Más rápido el typewriter
             }
         }
         
         // Start after a delay
-        setTimeout(typeWriter, 500);
+        setTimeout(typeWriter, 200); // Empieza antes
     }
     
     // Animated numbers
@@ -259,7 +266,7 @@ function initTextAnimations() {
     
     numbers.forEach(number => {
         const target = parseInt(number.dataset.animateNumber || number.textContent);
-        const duration = parseInt(number.dataset.duration || 2000);
+        const duration = parseInt(number.dataset.duration || 1200); // Más rápido: 1.2s en vez de 2s
         const start = 0;
         const increment = target / (duration / 16);
         
@@ -333,7 +340,7 @@ function initLoadingAnimations() {
         }
         
         .image-loaded {
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.3s ease-out; /* Más rápido */
         }
         
         @keyframes fadeIn {
@@ -358,14 +365,14 @@ function initLoadingAnimations() {
         background: linear-gradient(90deg, var(--secondary), var(--accent));
         width: 0;
         z-index: 9999;
-        transition: width 0.3s ease;
+        transition: width 0.2s ease; /* Más rápido */
     `;
     document.body.appendChild(progressBar);
     
     // Update progress based on page load
     let progress = 0;
     const interval = setInterval(() => {
-        progress += Math.random() * 30;
+        progress += Math.random() * 40; // Más incremento
         
         if (progress >= 100) {
             progress = 100;
@@ -375,12 +382,12 @@ function initLoadingAnimations() {
                 progressBar.style.opacity = '0';
                 setTimeout(() => {
                     progressBar.remove();
-                }, 300);
-            }, 500);
+                }, 200); // Más rápido
+            }, 300); // Más rápido
         }
         
         progressBar.style.width = `${progress}%`;
-    }, 300);
+    }, 200); // Más frecuente
     
     // Complete on window load
     window.addEventListener('load', () => {
