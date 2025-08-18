@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="css/mobile-animations-fix.css">
     <link rel="stylesheet" href="css/mobile-margin-fix.css">
     <link rel="stylesheet" href="css/white-stripe-fix.css">
+    <link rel="stylesheet" href="css/picture-element-fix.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -149,7 +150,17 @@
                 </div>
 
                 <div class="hero-image">
-                    <img src="images/hero.jpg" alt="Doctora hispana sonriendo" loading="eager">
+                    <picture>
+                        <!-- Imagen para móvil (400x400 cuadrada) -->
+                        <source media="(max-width: 768px)" 
+                                srcset="images/ceo-mobile.jpg">
+                        
+                        <!-- Imagen para desktop (800x1018 vertical) -->
+                        <img src="images/ceo-desktop.jpg" 
+                             alt="Noel Mendez - CEO de NK Insurance"
+                             loading="eager">
+                    </picture>
+                    
                     <div class="hero-card">
                         <div class="card-icon">✓</div>
                         <div class="card-content">

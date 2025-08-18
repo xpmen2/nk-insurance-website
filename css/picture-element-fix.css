@@ -1,0 +1,197 @@
+/* ========================================
+   PICTURE ELEMENT FIX - NK Insurance
+   Optimización para elemento picture con dos imágenes
+   ======================================== */
+
+/* Estilos base para el elemento picture */
+.hero-image picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-image picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-2xl);
+}
+
+/* ========================================
+   DESKTOP (800x1018 - proporción vertical)
+   ======================================== */
+@media (min-width: 769px) {
+    .hero-image {
+        position: relative;
+        animation: fadeIn 1.5s ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-2xl);
+        overflow: hidden;
+        aspect-ratio: 800/1018; /* Proporción de la imagen desktop */
+        max-height: 600px;
+        width: 100%;
+    }
+    
+    .hero-image picture img {
+        object-fit: cover;
+        object-position: center top; /* Enfocar en la parte superior */
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* ========================================
+   TABLET (mantenemos proporción vertical)
+   ======================================== */
+@media (min-width: 577px) and (max-width: 768px) {
+    .hero-image {
+        aspect-ratio: 4/5;
+        max-height: 450px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .hero-image picture img {
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+/* ========================================
+   MÓVIL (400x400 - proporción cuadrada)
+   ======================================== */
+@media (max-width: 576px) {
+    .hero-image {
+        position: relative;
+        aspect-ratio: 1/1; /* Cuadrado como la imagen móvil */
+        max-height: 350px;
+        width: 90%;
+        margin: 0 auto var(--spacing-lg);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+    }
+    
+    .hero-image picture img {
+        object-fit: cover;
+        object-position: center center; /* Centrado para imagen cuadrada */
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Hero card más pequeña en móvil */
+    .hero-card {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        max-width: calc(100% - 30px);
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+    
+    .hero-card .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .hero-card .card-content strong {
+        font-size: 14px;
+    }
+    
+    .hero-card .card-content span {
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   FIX PARA LA FRANJA BLANCA EN MÓVIL
+   ======================================== */
+@media (max-width: 768px) {
+    /* Asegurar que el hero ocupe todo el ancho */
+    .hero {
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        position: relative;
+        left: 0 !important;
+        right: 0 !important;
+    }
+    
+    /* Container del hero */
+    .hero .container {
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Hero container sin márgenes */
+    .hero-container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    
+    /* Hero content con padding */
+    .hero-content {
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+}
+
+/* ========================================
+   ANIMACIONES MANTENIDAS
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hero card flotante */
+.hero-card {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========================================
+   SOLUCIÓN DEFINITIVA PARA MÁRGENES
+   ======================================== */
+@media (max-width: 576px) {
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
+    }
+    
+    .hero {
+        width: 100vw !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 40px 0 !important;
+    }
+    
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        gap: 20px;
+    }
+}
