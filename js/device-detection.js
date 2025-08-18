@@ -156,16 +156,9 @@
         // Crear estilos optimizados
         const style = document.createElement('style');
         style.innerHTML = `
-            /* ===== OPTIMIZACIONES PARA TOUCH DEVICES ===== */
+            /* ===== OPTIMIZACIONES BALANCEADAS PARA TOUCH DEVICES ===== */
             
-            /* Animaciones más rápidas */
-            .is-touch *,
-            .is-mobile * {
-                transition-duration: 0.2s !important;
-                animation-duration: 0.3s !important;
-            }
-            
-            /* Eliminar TODOS los delays en cards */
+            /* Animaciones optimizadas pero visibles */
             .is-touch .feature-card,
             .is-touch .service-card,
             .is-touch .benefit-card,
@@ -174,65 +167,99 @@
             .is-mobile .service-card,
             .is-mobile .benefit-card,
             .is-mobile .testimonial-card {
-                transition-delay: 0s !important;
-                animation-delay: 0s !important;
-                opacity: 1 !important;
-                transform: translateY(0) !important;
+                transition: all 0.4s ease !important; /* Más rápido pero visible */
+                transition-delay: 0s !important; /* Sin delay entre cards */
             }
             
-            /* Hacer que aparezcan inmediatamente */
+            /* Mantener animaciones suaves para badges */
+            .is-touch .hero-badge,
+            .is-touch .about-badge,
+            .is-touch .card-content,
+            .is-mobile .hero-badge,
+            .is-mobile .about-badge,
+            .is-mobile .card-content {
+                animation-duration: 3s !important; /* Mantener suave como desktop */
+                transition-duration: 0.6s !important;
+            }
+            
+            /* Animación de float para badges - mantener suave */
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+            
+            /* Animación de pulse para badges - mantener suave */
+            @keyframes pulse {
+                0%, 100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.05);
+                    opacity: 0.9;
+                }
+            }
+            
+            /* Optimizar entrada de elementos al scroll */
             .is-touch .animate-in,
             .is-mobile .animate-in {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
+                transition: opacity 0.4s ease, transform 0.4s ease !important;
             }
             
-            /* Desactivar animaciones de scroll */
-            .is-touch [data-aos],
-            .is-mobile [data-aos] {
-                opacity: 1 !important;
-                transform: none !important;
+            /* Reducir desplazamiento inicial */
+            .is-touch [style*="translateY(20px)"],
+            .is-mobile [style*="translateY(20px)"] {
+                transform: translateY(10px) !important;
             }
             
-            /* Simplificar hover effects */
-            .is-touch .card:hover,
-            .is-mobile .card:hover {
-                transform: translateY(-2px) !important;
+            /* Hover effects simples pero presentes */
+            .is-touch .card:active,
+            .is-mobile .card:active {
+                transform: translateY(-3px) !important;
+                transition: transform 0.2s ease !important;
             }
             
-            /* Desactivar parallax */
+            /* Mantener parallax desactivado */
             .is-touch [data-parallax],
             .is-mobile [data-parallax] {
                 transform: none !important;
             }
             
-            /* Optimizar sombras */
+            /* Optimizar sombras sin eliminarlas */
             .is-touch .card,
-            .is-touch .btn,
-            .is-mobile .card,
-            .is-mobile .btn {
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            .is-mobile .card {
+                box-shadow: 0 4px 8px rgba(0,0,0,0.08) !important;
             }
             
-            /* Desactivar animaciones de fondo del hero */
+            .is-touch .card:hover,
+            .is-mobile .card:active {
+                box-shadow: 0 6px 12px rgba(0,0,0,0.12) !important;
+            }
+            
+            /* Animaciones de fondo del hero más sutiles */
             .is-touch .hero::before,
             .is-touch .hero::after,
             .is-mobile .hero::before,
             .is-mobile .hero::after {
-                display: none !important;
+                animation-duration: 30s !important; /* Más lento para menos distracción */
+                opacity: 0.5 !important;
             }
             
             /* Mejorar performance de scroll */
             .is-touch *,
             .is-mobile * {
                 -webkit-overflow-scrolling: touch;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
             }
             
-            /* Para móviles de alta resolución como el tuyo */
+            /* Para móviles de alta resolución */
             .is-high-res.is-touch .feature-card,
             .is-high-res.is-touch .service-card {
-                will-change: auto !important;
                 transform: translateZ(0);
             }
         `;
@@ -260,48 +287,91 @@
         `);
         
         if (animatedElements.length > 0) {
-            // Hacer todo visible inmediatamente
-            animatedElements.forEach(element => {
-                element.style.opacity = '1';
-                element.style.transform = 'none';
-                element.style.transition = 'opacity 0.2s ease';
-                element.style.transitionDelay = '0s';
-                element.classList.add('animate-in');
-            });
-            
-            // Crear un observer simplificado
-            const simpleObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
+            // Crear un observer optimizado para móvil
+            const mobileObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        simpleObserver.unobserve(entry.target);
+                        // Aplicar animación con un pequeño delay secuencial
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.classList.add('animate-in');
+                        }, index * 50); // 50ms entre cada elemento
+                        
+                        mobileObserver.unobserve(entry.target);
                     }
                 });
             }, {
-                threshold: 0.01,
-                rootMargin: '100px'
+                threshold: 0.05,
+                rootMargin: '0px 0px -30px 0px' // Activar un poco antes
             });
             
-            // Solo observar elementos que aún no son visibles
+            // Preparar elementos para animación
             animatedElements.forEach(element => {
-                if (element.getBoundingClientRect().top > window.innerHeight) {
+                // Si el elemento ya está en viewport, mostrarlo
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    // Ya visible, mostrar sin animación
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                } else {
+                    // Preparar para animación
                     element.style.opacity = '0';
-                    simpleObserver.observe(element);
+                    element.style.transform = 'translateY(10px)';
+                    element.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    mobileObserver.observe(element);
                 }
             });
         }
         
-        // Desactivar typewriter
+        // Mantener typewriter pero más rápido
         const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) {
-            heroTitle.style.opacity = '1';
+        if (heroTitle && heroTitle.dataset.typewriter !== 'false') {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+            let index = 0;
+            
+            function quickTypewriter() {
+                if (index < text.length) {
+                    heroTitle.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(quickTypewriter, 20); // Más rápido en móvil
+                }
+            }
+            
+            setTimeout(quickTypewriter, 200);
         }
         
-        // Desactivar contador de números
+        // Números animados más rápidos
         const numbers = document.querySelectorAll('[data-animate-number]');
         numbers.forEach(number => {
-            const target = number.dataset.animateNumber || number.textContent;
-            number.textContent = target;
+            const target = parseInt(number.dataset.animateNumber || number.textContent);
+            const duration = 800; // Más rápido en móvil
+            let current = 0;
+            const increment = target / (duration / 16);
+            
+            const updateNumber = () => {
+                current += increment;
+                if (current < target) {
+                    number.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    number.textContent = target.toLocaleString();
+                }
+            };
+            
+            // Iniciar cuando sea visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !number.classList.contains('animated')) {
+                        number.classList.add('animated');
+                        updateNumber();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(number);
         });
     }
     
