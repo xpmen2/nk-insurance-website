@@ -279,14 +279,14 @@
     
     .hero-image {
         order: -1;
-        aspect-ratio: 16/9; /* Proporción horizontal para tablet */
+        aspect-ratio: 4/5; /* MANTENER proporción vertical como en desktop */
         max-height: 450px;
         min-height: 350px;
     }
     
     .hero-image img,
     .hero-image picture img {
-        object-position: center 20%; /* Ajustar posición para tablet */
+        object-position: center top; /* Mantener enfoque en la parte superior */
     }
     
     .hero-stats {
@@ -312,15 +312,18 @@
     }
     
     .hero-image {
-        aspect-ratio: 1/1; /* Cuadrado para móvil */
-        max-height: 350px;
+        aspect-ratio: 3/4; /* Proporción más cuadrada pero aún vertical */
+        max-height: 320px;
         min-height: 280px;
         margin-bottom: var(--spacing-lg);
+        width: 85%; /* Reducir ancho para dar respiro */
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .hero-image img,
     .hero-image picture img {
-        object-position: center 15%; /* Enfocar en la cara en móvil */
+        object-position: center 10%; /* Enfocar ligeramente arriba para mostrar cara */
     }
     
     .hero-cta {
