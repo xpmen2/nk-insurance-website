@@ -1,0 +1,142 @@
+/* ========================================
+   HERO IMAGE FIX - NK Insurance
+   Ajustes específicos para la imagen del CEO
+   ======================================== */
+
+/* 
+   Este archivo contiene ajustes opcionales para la imagen del CEO.
+   Úsalo si necesitas ajustes adicionales específicos para esa imagen.
+   
+   Para activarlo, agrega esta línea en el <head> del index.html:
+   <link rel="stylesheet" href="css/hero-image-fix.css">
+*/
+
+/* ========================================
+   Opción 1: Si la imagen necesita más espacio vertical
+   ======================================== */
+.hero-image-tall {
+    aspect-ratio: 3/4; /* Proporción más vertical */
+}
+
+.hero-image-tall img {
+    object-fit: contain !important;
+    object-position: center center !important;
+}
+
+/* ========================================
+   Opción 2: Si quieres un fondo específico para el CEO
+   ======================================== */
+.hero-image-ceo {
+    background: linear-gradient(135deg, 
+        rgba(11, 37, 69, 0.05) 0%, 
+        rgba(0, 212, 170, 0.05) 100%);
+    padding: 20px;
+    border-radius: var(--radius-2xl);
+}
+
+.hero-image-ceo img {
+    object-fit: contain !important;
+    transform: scale(0.95); /* Reducir ligeramente para dar margen */
+}
+
+/* ========================================
+   Opción 3: Ajuste con zoom controlado
+   ======================================== */
+.hero-image-zoom img {
+    object-fit: cover !important;
+    object-position: center 20% !important; /* Ajusta el porcentaje para centrar mejor la cara */
+    transform: scale(1.1); /* Zoom ligero para llenar más espacio */
+}
+
+/* ========================================
+   Ajustes Responsive Específicos
+   ======================================== */
+
+/* Desktop Grande (1400px+) */
+@media (min-width: 1400px) {
+    .hero-image img {
+        max-height: 650px;
+    }
+}
+
+/* Desktop (1200px-1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .hero-image img {
+        max-height: 550px;
+    }
+}
+
+/* Laptop (992px-1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero-image img {
+        max-height: 500px;
+    }
+}
+
+/* Tablet (768px-991px) - Donde se veía bien */
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 450px;
+    }
+    
+    .hero-image img {
+        max-height: 420px;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
+/* Tablet Pequeña (576px-767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .hero-image img {
+        max-height: 380px;
+    }
+}
+
+/* Móvil (hasta 575px) */
+@media (max-width: 575px) {
+    .hero-image {
+        min-height: 320px;
+        padding: 10px;
+    }
+    
+    .hero-image img {
+        max-height: 300px;
+        object-fit: contain;
+    }
+}
+
+/* ========================================
+   Utilidades para Testing
+   ======================================== */
+
+/* Agrega la clase .debug-image al contenedor para ver el área disponible */
+.debug-image {
+    border: 2px dashed red;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.debug-image img {
+    opacity: 0.9;
+}
+
+/* ========================================
+   Solución Alternativa: Imagen como Background
+   ======================================== */
+.hero-image-bg {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+}
+
+.hero-image-bg img {
+    display: none; /* Ocultar el img tag */
+}
+
+/* Para usar esta solución, agrega en el HTML:
+   style="background-image: url('ruta-a-tu-imagen.jpg')"
+   en el div con clase hero-image-bg */

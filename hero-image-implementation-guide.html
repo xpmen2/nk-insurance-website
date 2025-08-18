@@ -1,0 +1,174 @@
+<!-- ========================================
+     GUÍA DE IMPLEMENTACIÓN: IMAGEN HERO RESPONSIVE
+     NK Insurance - Solución con Art Direction
+     ======================================== -->
+
+<!-- 
+PROBLEMA RESUELTO:
+La imagen del CEO se cortaba en algunos dispositivos o mostraba franjas laterales.
+
+SOLUCIÓN IMPLEMENTADA:
+1. CSS ajustado con aspect-ratio diferente por dispositivo
+2. object-position optimizado para enfocar la cara
+3. Opción de usar diferentes imágenes con <picture>
+
+======================================
+OPCIÓN 1: SOLUCIÓN ACTUAL (Una sola imagen)
+======================================
+La imagen actual ya debería funcionar mejor con los ajustes CSS aplicados:
+- Desktop: aspect-ratio 4/5 (vertical)
+- Tablet: aspect-ratio 16/9 (horizontal)  
+- Móvil: aspect-ratio 1/1 (cuadrado)
+
+Si aún necesitas ajustes, prueba cambiar object-position en el CSS:
+- center top (enfoca arriba)
+- center 20% (20% desde arriba)
+- center center (centrado)
+
+======================================
+OPCIÓN 2: MÚLTIPLES IMÁGENES (Recomendado)
+======================================
+Prepara 3 versiones de la imagen del CEO:
+1. ceo-desktop.jpg (vertical 4:5, 800x1000px)
+2. ceo-tablet.jpg (horizontal 16:9, 768x432px)
+3. ceo-mobile.jpg (cuadrado 1:1, 400x400px)
+
+Reemplaza en index.html la sección de imagen actual:
+-->
+
+<!-- CÓDIGO ACTUAL (buscar y reemplazar): -->
+<!--
+<div class="hero-image">
+    <img src="images/ceo-nk-insurance.jpg" alt="CEO NK Insurance">
+    <div class="hero-card">
+        ...
+    </div>
+</div>
+-->
+
+<!-- REEMPLAZAR POR: -->
+<div class="hero-image">
+    <picture>
+        <!-- Móvil: imagen cuadrada centrada en la cara -->
+        <source media="(max-width: 575px)" 
+                srcset="images/ceo-mobile.jpg 1x,
+                        images/ceo-mobile@2x.jpg 2x">
+        
+        <!-- Tablet: imagen horizontal 16:9 -->
+        <source media="(max-width: 991px)" 
+                srcset="images/ceo-tablet.jpg 1x,
+                        images/ceo-tablet@2x.jpg 2x">
+        
+        <!-- Desktop: imagen vertical 4:5 -->
+        <source media="(min-width: 992px)" 
+                srcset="images/ceo-desktop.jpg 1x,
+                        images/ceo-desktop@2x.jpg 2x">
+        
+        <!-- Fallback para navegadores antiguos -->
+        <img src="images/ceo-desktop.jpg" 
+             alt="Nelson Kcomt - CEO y Fundador de NK Insurance"
+             loading="lazy">
+    </picture>
+    
+    <div class="hero-card">
+        <div class="card-icon">✓</div>
+        <div class="card-content">
+            <strong>15+ Años</strong>
+            <span>Protegiendo Familias</span>
+        </div>
+    </div>
+</div>
+
+<!-- 
+======================================
+OPCIÓN 3: SOLUCIÓN CON BACKGROUND-IMAGE
+======================================
+Si prefieres máximo control, usa CSS background-image:
+-->
+
+<!-- HTML simplificado: -->
+<div class="hero-image hero-image-bg" 
+     style="background-image: url('images/ceo-desktop.jpg');">
+    <div class="hero-card">
+        <div class="card-icon">✓</div>
+        <div class="card-content">
+            <strong>15+ Años</strong>
+            <span>Protegiendo Familias</span>
+        </div>
+    </div>
+</div>
+
+<!-- CSS adicional necesario: -->
+<style>
+.hero-image-bg {
+    background-size: cover;
+    background-position: center 20%; /* Ajustar según necesidad */
+    background-repeat: no-repeat;
+}
+
+/* Diferentes imágenes por dispositivo */
+@media (max-width: 575px) {
+    .hero-image-bg {
+        background-image: url('images/ceo-mobile.jpg') !important;
+        background-position: center center;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .hero-image-bg {
+        background-image: url('images/ceo-tablet.jpg') !important;
+        background-position: center 30%;
+    }
+}
+</style>
+
+<!-- 
+======================================
+HERRAMIENTAS RECOMENDADAS PARA PREPARAR IMÁGENES
+======================================
+
+1. PARA RECORTAR Y AJUSTAR:
+   - Photoshop / GIMP (profesional)
+   - Canva.com (online gratuito)
+   - Photopea.com (Photoshop online gratuito)
+
+2. PARA OPTIMIZAR PESO:
+   - TinyPNG.com
+   - Squoosh.app
+   - ImageOptim (Mac)
+
+3. PARA GENERAR VERSIONES @2x:
+   - Exportar al doble de resolución
+   - Desktop: 1600x2000px para @2x
+   - Tablet: 1536x864px para @2x
+   - Mobile: 800x800px para @2x
+
+======================================
+TIPS DE EDICIÓN PARA CADA VERSIÓN
+======================================
+
+DESKTOP (4:5 vertical):
+- Mantener torso completo
+- Espacio arriba para respirar
+- Brazos visibles si es posible
+
+TABLET (16:9 horizontal):
+- Corte a la altura del pecho
+- Centrado horizontal
+- Puede incluir más fondo
+
+MÓVIL (1:1 cuadrado):
+- Enfoque en cara y hombros
+- Corte tipo headshot profesional
+- Máxima claridad en la cara
+
+======================================
+TESTING
+======================================
+
+Para verificar cómo se ve en cada dispositivo:
+1. Chrome DevTools (F12)
+2. Responsive Design Mode
+3. Probar en dispositivos reales si es posible
+
+-->
