@@ -1,0 +1,121 @@
+/* ========================================
+   MOBILE ANIMATIONS FIX - NK Insurance
+   Corrección directa para animaciones móviles
+   ======================================== */
+
+/* APLICAR CUANDO SE DETECTA MÓVIL */
+body.is-mobile .feature-card,
+body.is-mobile .service-card,
+body.is-mobile .benefit-card,
+body.is-mobile .testimonial-card,
+body.is-mobile .about-content,
+body.is-mobile .about-images {
+    /* Forzar visibilidad inicial */
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s ease !important;
+}
+
+/* Cuando entran en vista */
+body.is-mobile .animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Badges - mantener animación suave */
+body.is-mobile .hero-badge,
+body.is-mobile .about-badge,
+body.is-mobile .hero-card {
+    animation-duration: 3s !important;
+}
+
+/* Float animation para badges */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Pulse animation para badges */
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+/* Cards - sin delay entre ellas */
+body.is-mobile .feature-card:nth-child(1),
+body.is-mobile .feature-card:nth-child(2),
+body.is-mobile .feature-card:nth-child(3),
+body.is-mobile .feature-card:nth-child(4) {
+    transition-delay: 0s !important;
+}
+
+body.is-mobile .service-card:nth-child(1),
+body.is-mobile .service-card:nth-child(2),
+body.is-mobile .service-card:nth-child(3),
+body.is-mobile .service-card:nth-child(4) {
+    transition-delay: 0s !important;
+}
+
+/* Hero específico */
+body.is-mobile .hero::before,
+body.is-mobile .hero::after {
+    animation-duration: 30s !important;
+    opacity: 0.3 !important;
+}
+
+/* Parallax desactivado */
+body.is-mobile [data-parallax] {
+    transform: none !important;
+}
+
+/* Touch interactions */
+body.is-mobile .card:active {
+    transform: scale(0.98) !important;
+}
+
+body.is-mobile .btn:active {
+    transform: scale(0.95) !important;
+}
+
+/* Performance optimizations */
+body.is-mobile * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+
+/* También aplicar para touch devices */
+body.is-touch .feature-card,
+body.is-touch .service-card,
+body.is-touch .benefit-card,
+body.is-touch .testimonial-card {
+    transition: all 0.4s ease !important;
+    transition-delay: 0s !important;
+}
+
+body.is-touch .animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Debug - verificar que se está aplicando */
+body.is-mobile::after {
+    content: "Mobile Mode Active";
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+    background: rgba(0, 212, 170, 0.9);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    z-index: 9999;
+    pointer-events: none;
+}

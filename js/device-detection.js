@@ -11,27 +11,23 @@
     // ========================================
     
     const deviceDetector = {
-        // Detección más precisa
+        // Detección simplificada y más confiable
         isMobile: function() {
-            // Check 1: User Agent
-            const userAgentCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            // Primero verificar viewport
+            if (window.innerWidth <= 768) {
+                return true;
+            }
             
-            // Check 2: Touch capability
-            const touchCheck = ('ontouchstart' in window) || 
-                             (navigator.maxTouchPoints > 0) || 
-                             (navigator.msMaxTouchPoints > 0);
+            // Luego User Agent
+            if (/Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                return true;
+            }
             
-            // Check 3: Screen size (considerando alta resolución)
-            const screenCheck = window.matchMedia("(max-width: 768px)").matches;
+            // Verificar touch + tamaño
+            const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            const smallScreen = window.innerWidth <= 992;
             
-            // Check 4: Orientation
-            const hasOrientation = typeof window.orientation !== 'undefined';
-            
-            // Check 5: Pointer coarse (touch screens)
-            const pointerCheck = window.matchMedia("(pointer: coarse)").matches;
-            
-            // Es móvil si tiene touch Y (es pequeño O tiene user agent móvil O pointer coarse)
-            return touchCheck && (userAgentCheck || screenCheck || pointerCheck || hasOrientation);
+            return hasTouch && smallScreen;
         },
         
         isTablet: function() {
@@ -401,12 +397,30 @@
     // INICIALIZACIÓN
     // ========================================
     
-    document.addEventListener('DOMContentLoaded', function() {
+    // Ejecutar inmediatamente para dispositivos móviles
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initialize);
+    } else {
+        // DOM ya cargado
+        initialize();
+    }
+    
+    function initialize() {
         // Actualizar info del dispositivo
         updateDeviceInfo();
         
         // Aplicar optimizaciones
         applyOptimizations();
+        
+        // Forzar aplicación de estilos
+        setTimeout(() => {
+            // Re-aplicar en caso de que los estilos no se hayan aplicado
+            if (deviceDetector.isMobile() || deviceDetector.isTouchDevice()) {
+                console.log('Forcing mobile optimizations...');
+                document.body.classList.add('is-mobile');
+                document.body.classList.add('is-touch');
+            }
+        }, 100);
         
         // Actualizar en resize
         let resizeTimeout;
@@ -417,7 +431,7 @@
                 applyOptimizations();
             }, 250);
         });
-    });
+    }
     
     // ========================================
     // API PÚBLICA
