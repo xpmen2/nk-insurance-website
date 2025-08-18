@@ -14,6 +14,8 @@
     position: relative;
     overflow: hidden;
     padding: var(--spacing-3xl) 0;
+    margin: 0; /* Asegurar que no hay márgenes */
+    width: 100%; /* Ancho completo */
 }
 
 /* Background Decoration */
@@ -49,6 +51,10 @@
     align-items: center;
     position: relative;
     z-index: 1;
+    width: 100%; /* Asegurar ancho completo */
+    max-width: 1200px; /* Máximo ancho del contenedor */
+    margin: 0 auto; /* Centrar */
+    padding: 0 20px; /* Padding lateral */
 }
 
 /* Hero Content */
@@ -270,11 +276,14 @@
     .hero {
         min-height: auto;
         padding: var(--spacing-2xl) 0;
+        margin: 0; /* Sin márgenes */
+        width: 100%; /* Ancho completo */
     }
     
     .hero-container {
         grid-template-columns: 1fr;
         gap: var(--spacing-2xl);
+        padding: 0 15px; /* Padding lateral consistente */
     }
     
     .hero-image {
@@ -303,6 +312,16 @@
 }
 
 @media (max-width: 575px) {
+    .hero {
+        padding: var(--spacing-xl) 0;
+        margin: 0;
+        width: 100%;
+    }
+    
+    .hero-container {
+        padding: 0 15px; /* Padding uniforme */
+    }
+    
     .hero-title {
         font-size: 1.75rem;
     }
