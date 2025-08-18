@@ -7,6 +7,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     
+    // Check if mobile and load performance optimizations
+    const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        // Load mobile performance optimizations
+        const mobileScript = document.createElement('script');
+        mobileScript.src = 'js/mobile-performance.js';
+        mobileScript.async = true;
+        document.head.appendChild(mobileScript);
+        console.log('Mobile detected - Loading performance optimizations...');
+    }
+    
     // Initialize all modules
     initializeApp();
 });
